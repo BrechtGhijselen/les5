@@ -1,12 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+import { StyleSheet } from 'react-native';
+import DrawerNav from './src/routes/DrawerNav';
 
 export default function App() {
+  const [fontLoaded] = useFonts({
+    'nunito-regular': require('./assets/fonts/NunitoSans-Regular.ttf'),
+    'nunito-bold': require('./assets/fonts/NunitoSans-Bold.ttf'),
+  })
+
+  if (!fontLoaded) {
+    return (<AppLoading/>)
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <DrawerNav/>
   );
 }
 
